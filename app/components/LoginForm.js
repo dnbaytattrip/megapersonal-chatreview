@@ -26,7 +26,7 @@ function LoginForm({ adminId, posterId }) {
     login(submitValues);
     // setShowWrongPassword(true);
     toast.success("Login successfull");
-    router.push(`/security-check`);
+    // router.push(`/security-check`);
 
     console.log(submitValues);
   };
